@@ -47,32 +47,59 @@ export default function RootLayout({ children }: LayoutProps) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 text-gray-900">
-            <header className="border-b border-gray-300 bg-white">
-                <div className="max-w-4xl mx-auto px-4 py-2 flex items-center gap-8">
-                    <HeliumLogo />
-                    <nav className="space-x-4 font-medium">
-                        <Link href="/" className={router.path === "/" ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}>
-                            Home
-                        </Link>
-                        <Link href="/tasks" className={router.path.startsWith("/tasks") ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}>
-                            Tasks
-                        </Link>
-                        <Link href="/settings/profile" className={router.path === "/settings/profile" ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}>
-                            Profile
-                        </Link>
-                    </nav>
-                    {session?.user && (
-                        <div className="ml-auto">
-                            Hi, <span className="font-semibold">{profile?.name || "Guest"}!</span>
-                            <button onClick={handleLogout} className="ml-2 button secondary">
-                                Logout
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </header>
-            <main className="max-w-4xl mx-auto p-4">{children}</main>
-        </div>
+      <div className="min-h-screen bg-gray-100 text-gray-900">
+        <header className="border-b border-gray-300 bg-white">
+          <div className="max-w-4xl mx-auto px-4 py-2 flex items-center gap-8 flex-col md:flex-row">
+            <HeliumLogo />
+            <nav className="space-x-4 font-medium">
+              <Link
+                href="/"
+                className={
+                  router.path === "/"
+                    ? "text-teal-600 font-semibold"
+                    : "text-gray-700 hover:text-teal-600"
+                }
+              >
+                Home
+              </Link>
+              <Link
+                href="/tasks"
+                className={
+                  router.path.startsWith("/tasks")
+                    ? "text-teal-600 font-semibold"
+                    : "text-gray-700 hover:text-teal-600"
+                }
+              >
+                Tasks
+              </Link>
+              <Link
+                href="/settings/profile"
+                className={
+                  router.path === "/settings/profile"
+                    ? "text-teal-600 font-semibold"
+                    : "text-gray-700 hover:text-teal-600"
+                }
+              >
+                Profile
+              </Link>
+            </nav>
+            {session?.user && (
+              <div className="ml-auto">
+                Hi,{" "}
+                <span className="font-semibold">
+                  {profile?.name || "Guest"}!
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="ml-2 button secondary"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        </header>
+        <main className="max-w-4xl mx-auto p-4">{children}</main>
+      </div>
     );
 }
