@@ -11,6 +11,11 @@ const config: HeliumConfig = {
         // Message encoding: "msgpack" (default, binary) or "json" (text, easier debugging)
         encoding: "msgpack",
 
+        transport: "websocket", // or "auto" or "json"
+
+        // Changes the transport for mobile devices to long-polling HTTP
+        autoHttpOnMobile: true, // only applies if transport is "auto"
+
         // WebSocket per-message compression
         compression: {
             enabled: true,
