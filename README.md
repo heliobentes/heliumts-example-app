@@ -1,6 +1,6 @@
 # HeliumTS Example App
 
-A React + Vite application using [HeliumTS](https://github.com/heliobentes/heliumts) 0.10.1. It demonstrates file-based routes, route groups and layouts, typed RPC, HTTP handlers, static generation, server-side rendering, background workers, Tailwind CSS, and Google sign-in with Better Auth.
+A React + Vite application using [HeliumTS](https://github.com/heliobentes/heliumts) 0.10.2. It demonstrates file-based routes, route groups and layouts, typed RPC, HTTP handlers, static generation, server-side rendering, background workers, Tailwind CSS, and Google sign-in with Better Auth.
 
 ## Requirements
 
