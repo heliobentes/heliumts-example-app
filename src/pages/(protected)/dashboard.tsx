@@ -15,8 +15,8 @@ export default function HomePage() {
                 <li>Server functions live in src/server and are auto-scanned</li>
                 <li>Pages live in src/pages and are file-based routes (NextJS page route style)</li>
                 <li>Client imports server functions via virtual modules (heliumts/server)</li>
-                <li>RPC uses WebSocket with HTTP fallback when configured</li>
-                <li>Two hooks: useFetch (reactive reads) and useCall (imperative writes)</li>
+                <li>RPC uses HTTP with typed arguments and results</li>
+                <li>useFetch for reads, useCall for mutations, and useStreaming for typed chunks</li>
 
                 <li>Simple mental model: write a server function → import on client → call it</li>
             </ul>

@@ -6,12 +6,12 @@ import { middleware } from "heliumts/server";
 import { auth } from "../libs/better-auth/auth";
 import { connectToDatabase } from "./db/connection";
 
-// Only these diagnostic methods are public. New RPC methods require a session
+// Only these diagnostics, the streaming demo, and metadata are public. New RPC methods require a session
 // by default so a client-side route guard cannot accidentally expose data.
-const publicMethods = new Set(["getIP", "getServerEnv", "__helium_internal__.seoMetadata"]);
+const publicMethods = new Set(["getIP", "getServerEnv", "streamText", "__helium_internal__.seoMetadata"]);
 
 export default middleware(async (context, next) => {
-    const requiresSession = (context.type === "method" && !publicMethods.has(context.methodName || "")) || (context.type === "http" && context.httpPath === "/api/get-tasks");
+    const requiresSession = context.type === "method" && !publicMethods.has(context.methodName || "");
 
     if (requiresSession) {
         const headers = fromNodeHeaders(context.ctx.req.headers);

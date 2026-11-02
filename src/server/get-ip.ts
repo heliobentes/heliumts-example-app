@@ -4,7 +4,7 @@ export const getIP = defineMethod(async (_args, ctx) => {
     // Access client IP (extracted based on trustProxyDepth config)
     console.log("Client IP:", ctx.req.ip);
 
-    // Access headers from the WebSocket upgrade request
+    // Access headers from the current HTTP RPC request
     console.log("User-Agent:", ctx.req.headers["user-agent"]);
 
     // Access other request metadata
