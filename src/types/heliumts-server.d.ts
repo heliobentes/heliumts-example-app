@@ -3,7 +3,7 @@
 * Auto generated file - DO NOT EDIT!
 * # Helium Server Type Definitions
 *
-* @helium-methods createTask, deleteTask, editTask, getIP, getProfile, getServerEnv, getTaskById, getTasks, updateProfile, updateTaskStatus
+* @helium-methods createTask, deleteTask, editTask, getIP, getProfile, getServerEnv, getTaskById, getTasks, streamText, updateProfile, updateTaskStatus
 **/
 import type { createTask as __helium_method_0 } from '../server/tasks/index';
 import type { deleteTask as __helium_method_1 } from '../server/tasks/index';
@@ -13,8 +13,9 @@ import type { getProfile as __helium_method_4 } from '../server/profile';
 import type { getServerEnv as __helium_method_5 } from '../server/env';
 import type { getTaskById as __helium_method_6 } from '../server/tasks/index';
 import type { getTasks as __helium_method_7 } from '../server/tasks/index';
-import type { updateProfile as __helium_method_8 } from '../server/profile';
-import type { updateTaskStatus as __helium_method_9 } from '../server/tasks/index';
+import type { streamText as __helium_method_8 } from '../server/streaming';
+import type { updateProfile as __helium_method_9 } from '../server/profile';
+import type { updateTaskStatus as __helium_method_10 } from '../server/tasks/index';
 
 declare module 'heliumts/server' {
     // Method stubs for client-side type inference
@@ -50,12 +51,16 @@ declare module 'heliumts/server' {
         Parameters<typeof __helium_method_7['handler']>[0],
         Awaited<ReturnType<typeof __helium_method_7['handler']>>
     >;
-    export const updateProfile: import('heliumts/client').MethodStub<
+    export const streamText: import('heliumts/client').MethodStub<
         Parameters<typeof __helium_method_8['handler']>[0],
         Awaited<ReturnType<typeof __helium_method_8['handler']>>
     >;
-    export const updateTaskStatus: import('heliumts/client').MethodStub<
+    export const updateProfile: import('heliumts/client').MethodStub<
         Parameters<typeof __helium_method_9['handler']>[0],
         Awaited<ReturnType<typeof __helium_method_9['handler']>>
+    >;
+    export const updateTaskStatus: import('heliumts/client').MethodStub<
+        Parameters<typeof __helium_method_10['handler']>[0],
+        Awaited<ReturnType<typeof __helium_method_10['handler']>>
     >;
 }

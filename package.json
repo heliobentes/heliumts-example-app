@@ -15,7 +15,7 @@
         "better-auth": "^1.7.15",
         "cac": "^6.7.14",
         "esbuild": "^0.27.7",
-        "heliumts": "^0.9.6",
+        "heliumts": "^0.10.1",
         "mongodb": "^7.0.0",
         "mongoose": "^9.11.4",
         "react": "^18.0.0",

@@ -61,11 +61,8 @@ export default function RootLayout({ children }: LayoutProps) {
                         <Link href="/settings/profile" className={router.path === "/settings/profile" ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}>
                             Profile
                         </Link>
-                        <Link
-                            href="/tasks/test-rpc-vs-http"
-                            className={router.path === "/tasks/test-rpc-vs-http" ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}
-                        >
-                            Test speed
+                        <Link href="/streaming" className="text-gray-700 hover:text-teal-600">
+                            Streaming
                         </Link>
                     </nav>
                     {session?.user && (

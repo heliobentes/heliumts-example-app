@@ -1,6 +1,6 @@
 # HeliumTS Example App
 
-A React + Vite application using [HeliumTS](https://github.com/heliobentes/heliumts) 0.9.6. It demonstrates file-based routes, route groups and layouts, typed RPC, HTTP handlers, static generation, server-side rendering, background workers, Tailwind CSS, and Google sign-in with Better Auth.
+A React + Vite application using [HeliumTS](https://github.com/heliobentes/heliumts) 0.10.1. It demonstrates file-based routes, route groups and layouts, typed RPC, HTTP handlers, static generation, server-side rendering, background workers, Tailwind CSS, and Google sign-in with Better Auth.
 
 ## Requirements
 
@@ -31,10 +31,10 @@ Only variables beginning with `HELIUM_PUBLIC_` are exposed directly to browser c
 | `/login` | Google sign-in through the multi-segment `/api/auth/**` HTTP handler |
 | `/dashboard` | Typed RPC queries, public environment values, and client IP detection |
 | `/tasks` and `/tasks/:id` | Queries, mutations, and automatic cache invalidation |
-| `/tasks/test-rpc-vs-http` | A small read-only transport comparison; larger runs can hit the configured request limits |
+| `/streaming` | Deterministic typed HTTP streaming, restart, cancellation, and partial failures; no database or provider required |
 | `/settings/profile` | Profile reads and updates |
 
-`src/server/_middleware.ts` checks a Better Auth session before protected RPC methods and `/api/get-tasks` execute. Client layout redirects provide the interface behavior; server middleware enforces access. New RPC methods require a session unless explicitly listed as public. The framework's public metadata method remains available for route metadata updates.
+`src/server/_middleware.ts` checks a Better Auth session before protected RPC methods execute. Client layout redirects provide the interface behavior; server middleware enforces access. New RPC methods require a session unless explicitly listed as public. The framework's public metadata method remains available for route metadata updates.
 
 This is a shared-data demo: all signed-in users use the same task collection and single profile. Add user ownership checks and database query scoping before adapting it for private user data. The sample webhook handlers also need provider signature validation before production use.
 
@@ -52,8 +52,8 @@ The build regenerates `src/types/heliumts-server.d.ts`, bundles the browser and 
 
 ## Deploy
 
-Use a persistent Node.js service with WebSocket upgrade support. Run `npm ci`, `npm run build`, and `npm start`; Helium serves the app and RPC endpoints together. `PORT` defaults to 3000. Set the production database URL, OAuth credentials, `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`, and a separate random `HELIUM_SECRET` in the service environment. Update the Google OAuth callback URL to the production origin.
+Use a persistent Node.js service with HTTP streaming support. Run `npm ci`, `npm run build`, and `npm start`; Helium serves the app and RPC endpoints together. `PORT` defaults to 3000. Set the production database URL, OAuth credentials, `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`, and a separate random `HELIUM_SECRET` in the service environment. Update the Google OAuth callback URL to the production origin.
 
-`TRUST_PROXY_DEPTH` defaults to `0` for direct connections. Set it to the exact number of trusted reverse proxies and make those proxies sanitize forwarded headers. Helium uses that setting for client IP extraction and the protocol passed to the auth handler. Keep Helium's default connection and request limits enabled; tune them for your deployment if needed.
+`TRUST_PROXY_DEPTH` defaults to `0` for direct connections. Set it to the exact number of trusted reverse proxies and make those proxies sanitize forwarded headers. Helium uses that setting for client IP extraction and the protocol passed to the auth handler. Keep Helium's default per-IP request limits enabled; tune them for your deployment if needed.
 
 This repository does not contain provider-specific deployment configuration. A static-only host cannot run its authentication, database, RPC, or worker features.
