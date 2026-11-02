@@ -1,7 +1,7 @@
 import { useCall } from "heliumts/client";
 import { getTasks } from "heliumts/server";
 
-const iterations = 100;
+const iterations = 25;
 export default function TasksPage() {
     const { data: _tasks, call: fetchTasks } = useCall(getTasks);
 

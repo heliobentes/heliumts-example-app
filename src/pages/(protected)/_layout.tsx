@@ -7,8 +7,6 @@ import HeliumLogo from "../../components/Logo";
 import { signOut, useSession } from "../../libs/better-auth/auth-client";
 
 export default function RootLayout({ children }: LayoutProps) {
-    const { data: profile } = useFetch(getProfile);
-
     const router = useRouter();
 
     const {
@@ -16,6 +14,8 @@ export default function RootLayout({ children }: LayoutProps) {
         isPending, //loading state
         refetch,
     } = useSession();
+
+    const { data: profile } = useFetch(getProfile, null, { enabled: Boolean(session) });
 
     useEffect(() => {
         const unsubscribeNavigation = router.on("navigation", (newPath) => {

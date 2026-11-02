@@ -7,7 +7,7 @@ export const getServerEnv = defineMethod(async () => {
         appName: process.env.HELIUM_PUBLIC_APP_NAME || "Not set",
         apiUrl: process.env.HELIUM_PUBLIC_API_URL || "Not set",
         // Server-only variables (not prefixed with VITE_)
-        databaseUrl: process.env.DATABASE_URL || "Not set",
+        hasDatabaseUrl: Boolean(process.env.MONGODB_URI),
         hasApiSecret: !!process.env.API_SECRET_KEY,
     };
     return env;

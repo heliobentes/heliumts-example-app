@@ -1,31 +1,17 @@
 import type { HeliumConfig } from "heliumts/server";
 
 const config: HeliumConfig = {
-    // Proxy trust depth - set based on your deployment environment
-    // 0 = local development (no proxies)
-    // 1 = single proxy (Vercel, Netlify, Railway, etc.)
-    // 2+ = multiple proxies (Cloudflare → Load Balancer → Server)
-    trustProxyDepth: 1,
-
+    // Keep 0 for a direct connection. Set this to the exact number of trusted
+    // reverse proxies in production; those proxies must sanitize forwarded headers.
+    trustProxyDepth: Number(process.env.TRUST_PROXY_DEPTH || 0),
     rpc: {
-        transport: "websocket", // or "auto" or "json"
-
-        // Changes the transport for mobile devices to long-polling HTTP
-        autoHttpOnMobile: true, // only applies if transport is "auto"
-
-        // WebSocket per-message compression
+        transport: "auto", // "websocket", "http", or "auto"
+        autoHttpOnMobile: true,
         compression: {
             enabled: true,
-            threshold: 1024, // Only compress messages larger than 1KB
+            threshold: 1024,
         },
-
-        // Rate limiting and connection security
-        security: {
-            maxConnectionsPerIP: 0, // 0 = unlimited (disable for dev)
-            maxMessagesPerWindow: 0, // 0 = unlimited (disable for dev)
-            rateLimitWindowMs: 10000,
-            tokenValidityMs: 10000,
-        },
+        // Omitted security settings use Helium's connection and request limits.
     },
 };
 

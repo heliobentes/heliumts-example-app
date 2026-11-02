@@ -9,8 +9,10 @@ export const auth = betterAuth({
         // Optional: if you don't provide a client, database transactions won't be enabled.
         client,
     }),
-    experimental: {
-        joins: true,
+    advanced: {
+        database: {
+            joins: true,
+        },
     },
     // Ensure the session cookie cache uses JWT strategy so the server decodes session_data
     // tokens that contain '.' (typical of JWTs). This matches the cookie format we see

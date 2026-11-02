@@ -1,9 +1,9 @@
 import { defineWorker } from "heliumts/server";
 
-export const helloWorldWorker = defineWorker(async () => {
-    while (true) {
+export const helloWorldWorker = defineWorker(() => {
+    const timer = setInterval(() => {
         console.log("Hello, World! from Helium Worker");
-        await new Promise((resolve) => setTimeout(resolve, 10000));
-        // throw "test"; // Wait for 10 seconds
-    }
+    }, 10000);
+    // Returning cleanup keeps this worker alive until the server stops.
+    return () => clearInterval(timer);
 });

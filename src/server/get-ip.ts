@@ -13,7 +13,8 @@ export const getIP = defineMethod(async (_args, ctx) => {
 
     return {
         ip: ctx.req.ip,
-        headers: ctx.req.headers,
+        // Do not echo Cookie or Authorization headers back to browser code.
+        userAgent: ctx.req.headers["user-agent"],
         url: ctx.req.url,
         method: ctx.req.method,
     };

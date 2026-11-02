@@ -21,6 +21,9 @@ export default function RootLayout({ children }: LayoutProps) {
                         <Link href="/contact" className={router.path === "/contact" ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}>
                             Contact
                         </Link>
+                        <Link href="/server-rendered" className={router.path === "/server-rendered" ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}>
+                            SSR example
+                        </Link>
                         <Link href="/login" className={router.path === "/login" ? "text-teal-600 font-semibold" : "text-gray-700 hover:text-teal-600"}>
                             Login
                         </Link>
